@@ -570,27 +570,6 @@ ARGS are the remaining arguments passed to ORIG-FUN."
   "Completion extra properties for Snippy.")
 
 ;;;###autoload
-(defun snippy-capf (&optional interactive)
-  "Complete with snippy at point.
-If called interactively restrict completion to `snippy-capf'.
-Optional argument INTERACTIVE specifies whether the call is interactive."
-  (interactive (list t))
-  (if interactive
-      (let ((completion-at-point-functions (list #'snippy-capf)))
-        (or (completion-at-point)
-            (user-error "No snippy completions at point")))
-    (when (and snippy-minor-mode snippy--computed-candidates)
-      (let* ((end (point))
-             (start (save-excursion
-                      (skip-chars-backward "[:alnum:]!@#$%_&*\\^\\-")
-                      (point))))
-        `(,start ,end
-                 ,snippy--computed-candidates
-                 ,@snippy--capf-properties)))))
-
-;;; Minor Modes
-
-;;;###autoload
 (define-minor-mode snippy-minor-mode
   "Toggle snippy in the current buffer."
   :group 'snippy
@@ -610,6 +589,25 @@ Optional argument INTERACTIVE specifies whether the call is interactive."
           snippy--merged-snippets nil)
     (when (called-interactively-p 'any)
       (message "Snippy minor mode disabled"))))
+
+;;;###autoload
+(defun snippy-capf (&optional interactive)
+  "Complete with snippy at point.
+If called interactively restrict completion to `snippy-capf'.
+Optional argument INTERACTIVE specifies whether the call is interactive."
+  (interactive (list t))
+  (if interactive
+      (let ((completion-at-point-functions (list #'snippy-capf)))
+        (or (completion-at-point)
+            (user-error "No snippy completions at point")))
+    (when (and snippy-minor-mode snippy--computed-candidates)
+      (let* ((end (point))
+             (start (save-excursion
+                      (skip-chars-backward "[:alnum:]!@#$%_&*\\^\\-")
+                      (point))))
+        `(,start ,end
+                 ,snippy--computed-candidates
+                 ,@snippy--capf-properties)))))
 
 (defun snippy--turn-on ()
   "Enable `snippy-minor-mode` only in file-visiting programming or text buffers."
