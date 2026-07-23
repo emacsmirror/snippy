@@ -30,7 +30,7 @@
 ;; Tests for Snippy.el.  These tests are AI generated.
 
 ;; To run:
-;; emacs -batch -f package-initialize -l snippy.el -l snippy-tests.el -f ert-run-tests-batch-and-exit
+;; emacs -batch -f package-initialize -l snippy.el -l test/snippy-tests.el -f ert-run-tests-batch-and-exit
 ;; YAsnippets needs to be installed inside your Emacs config directory for this command.
 
 ;;; Code:
