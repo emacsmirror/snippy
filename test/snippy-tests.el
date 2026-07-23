@@ -75,15 +75,13 @@
 
 (ert-deftest snippy-tests-check-engine-version-warning ()
   "Test `snippy-check-engine-version' alerts when version is below requirement."
-  (let ((snippy-package-json-content '((engines . ((vscode . "1.5.0")))))
-        (warning-triggered nil))
+  (let ((warning-triggered nil))
     ;; Intercept lwarn signals
     (cl-letf (((symbol-function 'lwarn)
                (lambda (type _level _message &rest _args)
                  (when (eq type 'snippy) (setq warning-triggered t)))))
       (snippy--check-engine-version)
       (should warning-triggered))))
-
 
 ;; 3. Language Mapping Checks
 (ert-deftest snippy-tests-get-vscode-language-name ()
