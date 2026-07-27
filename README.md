@@ -1,5 +1,8 @@
 # Snippy.el
 
+[![MELPA](https://melpa.org/packages/snippy-badge.svg)](https://melpa.org/#/snippy)
+
+
 VSCode/LSP snippet support for Emacs with Yasnippet.
 
 
