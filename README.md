@@ -67,9 +67,7 @@ Enable: snippy-fix-lsp-snippet-mode
 # Installation
 ```elisp
 (use-package snippy
-  :vc (:url "https://github.com/MiniApollo/snippy.git"
-            :branch "main"
-            :rev :newest) ; To get the latest updates
+  :ensure t
   :hook (after-init . global-snippy-minor-mode)
   :custom
   (snippy-global-languages '("global")) ; Recommended
