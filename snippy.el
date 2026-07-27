@@ -8,7 +8,7 @@
 
 ;; Keywords: convenience, emulations
 ;; Package-Requires: ((emacs "30.1") (yasnippet "0.14.0"))
-;; Version: 2.0.0
+;; Version: 2.0.1
 ;; URL: https://github.com/MiniApollo/snippy
 
 ;; This file is not part of GNU Emacs.
